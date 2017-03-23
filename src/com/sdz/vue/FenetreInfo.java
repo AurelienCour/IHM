@@ -84,18 +84,15 @@ public class FenetreInfo extends JFrame{
 		TreeListener treeListener = new TreeListener();
 		DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Classes");
 		for (Professeur pr : model.getProf()){
-			
 			for (Classe cl : pr.getClasses()) {
 				DefaultMutableTreeNode classe = new DefaultMutableTreeNode(cl);
-				
 				for (Eleve el : cl.getListeEleve()) {
 					DefaultMutableTreeNode eleve = new DefaultMutableTreeNode(el);
 					classe.add(eleve);
 				}
-				
 				racine.add(classe);
 			}
-	}
+		}
 		
 		this.listeClasseEleve = new JTree(racine);
 		listeClasseEleve.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
