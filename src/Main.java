@@ -2,6 +2,7 @@ import javax.swing.ImageIcon;
 import com.sdz.model.Classe;
 import com.sdz.model.Eleve;
 import com.sdz.model.FenetreInfoModel;
+import com.sdz.model.Professeur;
 import com.sdz.vue.FenetreInfo;
 
 
@@ -9,6 +10,9 @@ public class Main {
 	
 	
 	public static void main (String[] args){
+		Professeur p1 = new Professeur("Girard","Patrick");
+		Professeur p2 = new Professeur("Geniet","Annie");
+		
 		Classe c1 = new Classe("Classe 1A");
 		Classe c2 = new Classe("Classe 1B");
 		Classe c3 = new Classe("Classe 1C");
@@ -37,10 +41,14 @@ public class Main {
 		c3.addEleve(e8);
 		c3.addEleve(e9);
 		
+		p1.addClasse(c1);
+		p1.addClasse(c2);
+		p2.addClasse(c3);
+		
 		FenetreInfoModel model = new FenetreInfoModel();
-		model.addClasse(c1);
-		model.addClasse(c2);
-		model.addClasse(c3);
+		
+		model.addProf(p1);
+		model.addProf(p2);
 		
 		FenetreInfo f = new FenetreInfo(model);
 	}

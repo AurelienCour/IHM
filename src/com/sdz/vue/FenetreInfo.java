@@ -2,12 +2,10 @@ package com.sdz.vue;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,27 +22,25 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
-import com.sdz.controler.FenetreInfoControler;
+import com.sdz.controler.FenetreControler;
 import com.sdz.model.Classe;
 import com.sdz.model.Eleve;
 import com.sdz.model.FenetreInfoModel;
-
-import javafx.scene.control.TableColumn;
+import com.sdz.model.Professeur;
 
 public class FenetreInfo extends JFrame{
 	
-	private JPanel panelInfo;
-	private JLabel infoEleve;
 	private JPanel panelTable;
-	
-	private JPanel panelFormulaire;
-	
-	private FenetreInfoControler controler;
+	private PanelInfo panelInfo;
+
+	private FenetreControler controler;
 	private FenetreInfoModel model;
 	private JTree listeClasseEleve;
+	
 	private JTable tableClasse;
 	
 	public FenetreInfo(FenetreInfoModel model){
@@ -53,7 +49,6 @@ public class FenetreInfo extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setSize(1080, 700);
-		this.controler = new FenetreInfoControler(model,this);
 		this.model = model;
 		initComposant();
 		try {
@@ -71,15 +66,8 @@ public class FenetreInfo extends JFrame{
 	}
 	
 	private void initComposant(){
-		this.panelInfo = new JPanel();
-		this.panelInfo.setLayout(new BorderLayout());
-		this.panelInfo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		
-		
-		Font police = new Font("Serif", Font.PLAIN, 50);
-		this.infoEleve = new JLabel();
-		this.infoEleve.setFont(police);
-		this.infoEleve.setHorizontalAlignment(SwingConstants.CENTER);
+		this.panelInfo = new PanelInfo();
+		this.controler = new FenetreControler(this.model,this,this.panelInfo);
 		
 	    //Les titres des colonnes
 	    this.tableClasse = new JTable()
@@ -92,28 +80,22 @@ public class FenetreInfo extends JFrame{
         
         ListSelectionModel listSelectionModel = tableClasse.getSelectionModel();        
         listSelectionModel.addListSelectionListener(new ControleurTableResultat());
-        
-	    this.panelTable = new JPanel();
-	    this.panelTable.setLayout(new BorderLayout());
-	    this.panelTable.add(new JScrollPane(tableClasse),BorderLayout.CENTER);
-	    
-	    //this.panelInfo.add("Info", this.infoEleve);
-		this.panelInfo.add(this.panelTable,BorderLayout.CENTER);
-		
-		this.panelFormulaire = new JPanel();
-		this.panelFormulaire.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		TreeListener treeListener = new TreeListener();
-		//Création d'une racine
 		DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Classes");
-		for (Classe cl : model.getClasses()) {
-			DefaultMutableTreeNode classe = new DefaultMutableTreeNode(cl);
-			for (Eleve el : cl.getListeEleve()) {
-				DefaultMutableTreeNode eleve = new DefaultMutableTreeNode(el);
-				classe.add(eleve);
+		for (Professeur pr : model.getProf()){
+			
+			for (Classe cl : pr.getClasses()) {
+				DefaultMutableTreeNode classe = new DefaultMutableTreeNode(cl);
+				
+				for (Eleve el : cl.getListeEleve()) {
+					DefaultMutableTreeNode eleve = new DefaultMutableTreeNode(el);
+					classe.add(eleve);
+				}
+				
+				racine.add(classe);
 			}
-			racine.add(classe);
-		}
+	}
 		
 		this.listeClasseEleve = new JTree(racine);
 		listeClasseEleve.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
@@ -122,15 +104,11 @@ public class FenetreInfo extends JFrame{
 		
 		JPanel panelDroit = new JPanel();
 		panelDroit.setLayout(new GridLayout(2,1));
-		panelDroit.add(this.infoEleve);
 		panelDroit.add(this.panelInfo);
+		panelDroit.add(new JScrollPane(tableClasse));
 		
 		this.add(listeClasseEleve,BorderLayout.WEST);
 		this.add(panelDroit, BorderLayout.CENTER);
-	}
-	
-	public void changeLabel (String str){
-		this.infoEleve.setText(str);
 	}
 	
 	public void afficheTableEnfant(Classe obj){
@@ -150,7 +128,7 @@ public class FenetreInfo extends JFrame{
 										el});
 		}
 		this.tableClasse.setModel(model2);
-		javax.swing.table.TableColumn column = this.tableClasse.getColumnModel().getColumn(5);
+		TableColumn column = this.tableClasse.getColumnModel().getColumn(5);
 		column.setMinWidth(0);
 		column.setMaxWidth(0);
 	}
@@ -162,6 +140,7 @@ public class FenetreInfo extends JFrame{
 			if (node == null) return;
 			Object nodeInfo = node.getUserObject();
 			controler.getInfo(nodeInfo);
+			
 		}
 	}
 	
@@ -177,4 +156,6 @@ public class FenetreInfo extends JFrame{
 	        }
 	    }
 	}
+
+	
 }

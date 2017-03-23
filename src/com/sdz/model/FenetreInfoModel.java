@@ -4,24 +4,27 @@ import java.util.ArrayList;
 
 public class FenetreInfoModel  {
 	
-	private ArrayList<Classe> lesClasses;
+	private ArrayList<Professeur> professeurs;
 	
 	public FenetreInfoModel(){
-		this.lesClasses = new ArrayList<Classe>();
+		this.professeurs = new ArrayList<Professeur>();
 	}
 	
-	public void addClasse (Classe c){
-		this.lesClasses.add(c);
+	public void addProf (Professeur p){
+		if(!professeurs.contains(p))
+			this.professeurs.add(p);
 	}
 	
-	public ArrayList<Classe> getClasses(){
-		return this.lesClasses;
+	public ArrayList<Professeur> getProf(){
+		return this.professeurs;
 	}
 	
 	public Classe getClasseEnfant (Eleve e){
-		for (Classe classe : lesClasses) {
-			if(classe.contientEnfant(e))
-				return classe;
+		for (Professeur professeur : professeurs) {
+			for (Classe classe : professeur.getClasses()) {
+				if(classe.contientEnfant(e))
+					return classe;
+			}
 		}
 		return null;
 	}

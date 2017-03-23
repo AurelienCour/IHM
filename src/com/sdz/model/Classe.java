@@ -12,16 +12,17 @@ public class Classe {
 		this.listeEleves = new ArrayList<Eleve>();
 	}
 	
+	public boolean contientEnfant(Eleve e){
+		return this.listeEleves.contains(e);
+	}
+	
 	public void addEleve(Eleve eleve){
-		this.listeEleves.add(eleve);
+		if(!contientEnfant(eleve))
+			this.listeEleves.add(eleve);
 	}
 	
 	public ArrayList<Eleve> getListeEleve(){
 		return this.listeEleves;
-	}
-	
-	public boolean contientEnfant(Eleve e){
-		return listeEleves.contains(e);
 	}
 	
 	public String toString(){
