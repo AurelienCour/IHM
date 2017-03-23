@@ -72,7 +72,7 @@ public class FenetreInfo extends JFrame{
 	
 	private void initComposant(){
 		this.panelInfo = new JPanel();
-		this.panelInfo.setLayout(new CardLayout());
+		this.panelInfo.setLayout(new BorderLayout());
 		this.panelInfo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		
@@ -98,7 +98,7 @@ public class FenetreInfo extends JFrame{
 	    this.panelTable.add(new JScrollPane(tableClasse),BorderLayout.CENTER);
 	    
 	    //this.panelInfo.add("Info", this.infoEleve);
-		this.panelInfo.add("Table", this.panelTable);
+		this.panelInfo.add(this.panelTable,BorderLayout.CENTER);
 		
 		this.panelFormulaire = new JPanel();
 		this.panelFormulaire.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -131,7 +131,6 @@ public class FenetreInfo extends JFrame{
 	
 	public void changeLabel (String str){
 		this.infoEleve.setText(str);
-		//((CardLayout) this.panelInfo.getLayout()).show(this.panelInfo,"Info"); 
 	}
 	
 	public void afficheTableEnfant(Classe obj){
@@ -151,15 +150,9 @@ public class FenetreInfo extends JFrame{
 										el});
 		}
 		this.tableClasse.setModel(model2);
-		
-		
 		javax.swing.table.TableColumn column = this.tableClasse.getColumnModel().getColumn(5);
 		column.setMinWidth(0);
 		column.setMaxWidth(0);
-		
-		
-		this.tableClasse.setPreferredScrollableViewportSize(this.tableClasse.getPreferredSize());
-		((CardLayout) this.panelInfo.getLayout()).show(this.panelInfo,"Table");
 	}
 	
 	class TreeListener implements TreeSelectionListener{
