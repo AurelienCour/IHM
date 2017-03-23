@@ -20,6 +20,10 @@ public class Classe {
 		return this.listeEleves;
 	}
 	
+	public boolean contientEnfant(Eleve e){
+		return listeEleves.contains(e);
+	}
+	
 	public String toString(){
 		return this.nomClasse;
 	}

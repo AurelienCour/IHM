@@ -89,6 +89,7 @@ public class FenetreInfo extends JFrame{
                 return getValueAt(0, column).getClass();
             }
         };
+        
         ListSelectionModel listSelectionModel = tableClasse.getSelectionModel();        
         listSelectionModel.addListSelectionListener(new ControleurTableResultat());
         
@@ -150,9 +151,13 @@ public class FenetreInfo extends JFrame{
 										el});
 		}
 		this.tableClasse.setModel(model2);
+		
+		
 		javax.swing.table.TableColumn column = this.tableClasse.getColumnModel().getColumn(5);
 		column.setMinWidth(0);
 		column.setMaxWidth(0);
+		
+		
 		this.tableClasse.setPreferredScrollableViewportSize(this.tableClasse.getPreferredSize());
 		((CardLayout) this.panelInfo.getLayout()).show(this.panelInfo,"Table");
 	}

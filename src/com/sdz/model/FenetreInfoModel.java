@@ -17,4 +17,12 @@ public class FenetreInfoModel  {
 	public ArrayList<Classe> getClasses(){
 		return this.lesClasses;
 	}
+	
+	public Classe getClasseEnfant (Eleve e){
+		for (Classe classe : lesClasses) {
+			if(classe.contientEnfant(e))
+				return classe;
+		}
+		return null;
+	}
 }

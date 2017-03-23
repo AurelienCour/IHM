@@ -17,8 +17,10 @@ public class FenetreInfoControler {
 	}
 
 	public void getInfo(Object obj){
-		if(obj instanceof Eleve)
+		if(obj instanceof Eleve){
 			fenetre.changeLabel(obj.toString());
+			fenetre.afficheTableEnfant(model.getClasseEnfant((Eleve) obj));
+		}
 		else if(obj instanceof Classe){
 			fenetre.afficheTableEnfant((Classe) obj);
 		}
