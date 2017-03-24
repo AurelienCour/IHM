@@ -38,7 +38,7 @@ public class PanelInfo extends JPanel{
 	
 	public void changementEffectuer(Object obj){
 		if(obj instanceof Eleve){
-			fenetreInfo.getModeleTable().initDonnees(model.getClasseEnfant((Eleve) obj));
+			fenetreInfo.getModeleTable().reload();
 		}
 	}
 }

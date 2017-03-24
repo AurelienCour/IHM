@@ -5,7 +5,11 @@ import com.sdz.model.FenetreInfoModel;
 import com.sdz.model.Professeur;
 import com.sdz.vue.FenetreInfo;
 
-
+/**
+ * Main de l'application
+ * @author Aurelien
+ *
+ */
 public class Main {
 	
 	

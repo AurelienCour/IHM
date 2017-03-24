@@ -8,11 +8,21 @@ import javax.swing.event.ListSelectionListener;
 import com.sdz.vue.FenetreInfo;
 import com.sdz.vue.ModelTable;
 
+/**
+ * Classe permettant de controler les intéractions avec la JTable
+ * @author Aurelien
+ *
+ */
 public class JTableControler implements ListSelectionListener{
 
 	private JTable tableClasse;
 	private FenetreInfo fenetreInfo;
 
+	/**
+	 * Constructeur de notre classe
+	 * @param tableClasse La JTable concerner par les intéractions
+	 * @param fenetreInfo	La JFrame principal
+	 */
 	public JTableControler(JTable tableClasse, FenetreInfo fenetreInfo){
 		this.tableClasse = tableClasse;
 		this.fenetreInfo = fenetreInfo;

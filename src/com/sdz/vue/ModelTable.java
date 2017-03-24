@@ -6,16 +6,29 @@ import com.sdz.model.Classe;
 import com.sdz.model.Eleve;
 import com.sdz.model.FenetreInfoModel;
 
+/**
+ * Classe représentant le model de notre JTable
+ * @author Aurelien
+ *
+ */
 public class ModelTable extends AbstractTableModel {
 
 	private ArrayList<Eleve> donnees;
 	private final String[] entetes = {"Icone", "Nom", "Prenom", "Sexe", "Age"};
 
+	/**
+	 * Le constructeur de notre classe
+	 * @param model Le model contenant nos données
+	 */
 	public ModelTable(FenetreInfoModel model) {
 		super();
 		donnees = new ArrayList<Eleve>();
 	}
 
+	/**
+	 * Initialise les données de la table
+	 * @param cl La classe a importer au sein de la table
+	 */
 	public void initDonnees(Classe cl){
 		if(!donnees.isEmpty())
 			donnees.removeAll(donnees);
@@ -25,9 +38,13 @@ public class ModelTable extends AbstractTableModel {
 		reload();
 	}
 
+	/**
+	 * Permet de recharger la table
+	 */
 	public void reload(){
 		fireTableDataChanged();
 	}
+	
 	public int getRowCount() {
 		return donnees.size();
 	}
@@ -67,7 +84,10 @@ public class ModelTable extends AbstractTableModel {
 		}
 	}
 
-
+	/**
+	 * Permet d'ajouter un élève à notre table
+	 * @param eleve
+	 */
 	public void addEleve(Eleve eleve) {
 		donnees.add(eleve);
 		fireTableRowsInserted(donnees.size() -1, donnees.size() -1);

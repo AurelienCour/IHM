@@ -4,11 +4,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.sdz.vue.PanelInfoEleve;
 
+/**
+ * Classe permettant de controler les intéractions avec le Panel d'informations
+ * @author Aurelien
+ *
+ */
 public class PanelInfoControler implements ActionListener{
 	
 	private PanelInfoEleve panelInfoEleve;
 	private String idAction;
 
+	/**
+	 * Constructeur de la classe
+	 * @param panelInfoEleve Le panel contenant les JTextField de modification
+	 * @param idAction Permet l'identification du boutton
+	 */
 	public PanelInfoControler(PanelInfoEleve panelInfoEleve, String idAction) {
 		this.panelInfoEleve = panelInfoEleve;
 		this.idAction = idAction;

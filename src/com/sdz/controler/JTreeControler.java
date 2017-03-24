@@ -9,11 +9,21 @@ import com.sdz.model.Eleve;
 import com.sdz.model.FenetreInfoModel;
 import com.sdz.vue.TreeClasse;
 
+/**
+ * Classe permettant de controler les intéractions avec un JTree
+ * @author Aurelien
+ *
+ */
 public class JTreeControler implements TreeSelectionListener {
 	
 	private TreeClasse tree;
 	private FenetreInfoModel model;
 	
+	/**
+	 * Constructeur de la classe
+	 * @param tree Le model de JTree utiliser
+	 * @param model Model de notre application contenant les données
+	 */
 	public JTreeControler(TreeClasse tree, FenetreInfoModel model){
 		this.tree=tree;
 		this.model=model;

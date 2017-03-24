@@ -14,6 +14,11 @@ import com.sdz.controler.JTableControler;
 import com.sdz.model.FenetreInfoModel;
 import com.sdz.vue.Renderer.SexeCellRenderer;
 
+/**
+ * Classe représentant notre fenetre principal
+ * @author Aurelien
+ *
+ */
 public class FenetreInfo extends JFrame{
 	
 	private PanelInfo panelInfo;
@@ -22,6 +27,10 @@ public class FenetreInfo extends JFrame{
 	private JTable tableClasse;
 	private ModelTable modeleTable;
 	
+	/**
+	 * Le constructeur de notre classe
+	 * @param model Le model de notre application
+	 */
 	public FenetreInfo(FenetreInfoModel model){
 		this.setTitle("Test JTree et JTable");
 		this.setLayout(new BorderLayout());
@@ -29,12 +38,14 @@ public class FenetreInfo extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setSize(1080, 700);
 		this.model = model;
-		this.model.addVue(this);
 		initComposant();
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 	}
 	
+	/**
+	 * Permet d'initialiser les composants de notre fenêtre
+	 */
 	public void initComposant(){
 		modeleTable = new ModelTable(model);
 		this.panelInfo = new PanelInfo(this,model);
@@ -48,19 +59,33 @@ public class FenetreInfo extends JFrame{
 		this.add(panelDroit, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Permet de récupérer le panel contenant les informations
+	 * @return le panel
+	 */
 	public PanelInfo getPanelInfo(){
 		return this.panelInfo;
 	}
 
+	/**
+	 * Permet de récupérer le model permettant de créer la table
+	 * @return le model de notre table
+	 */
 	public ModelTable getModeleTable(){
 		return this.modeleTable;
 	}
 	
+	/**
+	 * Permet d'initialiser le JTree
+	 */
 	private void initJTree(){
 		this.listeClasseEleve = new TreeClasse(model,this).getJTree();
 		this.listeClasseEleve.setPreferredSize(new Dimension(180,180));
 	}
 	
+	/**
+	 * Permet d'initialiser la JTable
+	 */
 	private void initJTable(){
 		this.tableClasse = new JTable(modeleTable);
 		tableClasse.setDefaultRenderer(Boolean.class, new SexeCellRenderer());
