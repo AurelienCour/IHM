@@ -22,9 +22,12 @@ public class ModelTable extends AbstractTableModel {
 		for (Eleve eleve : cl.getListeEleve()) {
 			donnees.add(eleve);
 		}
-		fireTableDataChanged();
+		reload();
 	}
 
+	public void reload(){
+		fireTableDataChanged();
+	}
 	public int getRowCount() {
 		return donnees.size();
 	}

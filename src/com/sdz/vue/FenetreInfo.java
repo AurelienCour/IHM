@@ -10,9 +10,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionListener;
-
-import com.sdz.controler.FenetreControler;
 import com.sdz.controler.JTableControler;
 import com.sdz.model.FenetreInfoModel;
 import com.sdz.vue.Renderer.SexeCellRenderer;
@@ -20,7 +17,6 @@ import com.sdz.vue.Renderer.SexeCellRenderer;
 public class FenetreInfo extends JFrame{
 	
 	private PanelInfo panelInfo;
-	private FenetreControler controler;
 	private FenetreInfoModel model;
 	private JTree listeClasseEleve;
 	private JTable tableClasse;
@@ -33,22 +29,17 @@ public class FenetreInfo extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setSize(1080, 700);
 		this.model = model;
+		this.model.addVue(this);
 		initComposant();
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 	}
 	
-	private void initComposant(){
+	public void initComposant(){
 		modeleTable = new ModelTable(model);
-		this.panelInfo = new PanelInfo();
-		this.controler = new FenetreControler(this.model,this,this.panelInfo);
-		this.listeClasseEleve = new TreeClasse(model,this).getJTree();
-		this.listeClasseEleve.setPreferredSize(new Dimension(180,180));
-		this.tableClasse = new JTable(modeleTable);
-		tableClasse.setDefaultRenderer(Boolean.class, new SexeCellRenderer());
-		tableClasse.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		ListSelectionModel listSelectionModel = tableClasse.getSelectionModel();        
-		listSelectionModel.addListSelectionListener(new JTableControler(tableClasse, this));
+		this.panelInfo = new PanelInfo(this,model);
+		initJTree();
+		initJTable();
 		JPanel panelDroit = new JPanel();
 		panelDroit.setLayout(new GridLayout(2,1));
 		panelDroit.add(this.panelInfo);
@@ -64,4 +55,18 @@ public class FenetreInfo extends JFrame{
 	public ModelTable getModeleTable(){
 		return this.modeleTable;
 	}
+	
+	private void initJTree(){
+		this.listeClasseEleve = new TreeClasse(model,this).getJTree();
+		this.listeClasseEleve.setPreferredSize(new Dimension(180,180));
+	}
+	
+	private void initJTable(){
+		this.tableClasse = new JTable(modeleTable);
+		tableClasse.setDefaultRenderer(Boolean.class, new SexeCellRenderer());
+		tableClasse.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ListSelectionModel listSelectionModel = tableClasse.getSelectionModel();        
+		listSelectionModel.addListSelectionListener(new JTableControler(tableClasse, this));
+	}
+
 }

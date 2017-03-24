@@ -2,9 +2,12 @@ package com.sdz.model;
 
 import java.util.ArrayList;
 
+import com.sdz.vue.FenetreInfo;
+
 public class FenetreInfoModel  {
 	
 	private ArrayList<Professeur> professeurs;
+	private FenetreInfo vue;
 	
 	public FenetreInfoModel(){
 		this.professeurs = new ArrayList<Professeur>();
@@ -28,4 +31,9 @@ public class FenetreInfoModel  {
 		}
 		return null;
 	}
+	
+	public void addVue(FenetreInfo vue){
+		this.vue = vue;
+	}
+	
 }

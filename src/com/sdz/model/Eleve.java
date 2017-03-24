@@ -40,4 +40,26 @@ public class Eleve {
 	public ImageIcon getPhoto(){
 		return this.icon;
 	}
+	
+	private void setNom (String nom){
+		this.nom = nom;
+	}
+	
+	private void setPrenom (String prenom){
+		this.prenom = prenom;
+	}
+	
+	private void setAge (int age){
+		this.age = age;
+	}
+	
+	public void changeInfo(String nom, String prenom, int age){
+		if(!nom.equals(this.getNom()))
+			setNom(nom);
+		if(!prenom.equals(this.getPrenom()))
+			setPrenom(prenom);
+		if(age != this.getAge())
+			setAge(age);
+	}
+	
 }
