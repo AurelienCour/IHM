@@ -46,6 +46,7 @@ public class FenetreInfo extends JFrame{
 		this.listeClasseEleve.setPreferredSize(new Dimension(180,180));
 		this.tableClasse = new JTable(modeleTable);
 		tableClasse.setDefaultRenderer(Boolean.class, new SexeCellRenderer());
+		tableClasse.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		ListSelectionModel listSelectionModel = tableClasse.getSelectionModel();        
 		listSelectionModel.addListSelectionListener(new JTableControler(tableClasse, this));
 		JPanel panelDroit = new JPanel();
