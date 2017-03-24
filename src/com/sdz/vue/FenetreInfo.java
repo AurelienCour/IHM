@@ -1,36 +1,20 @@
 package com.sdz.vue;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeSelectionModel;
 
 import com.sdz.controler.FenetreControler;
-import com.sdz.model.Classe;
-import com.sdz.model.Eleve;
+import com.sdz.controler.JTableControler;
 import com.sdz.model.FenetreInfoModel;
-import com.sdz.model.Professeur;
 import com.sdz.vue.Renderer.SexeCellRenderer;
 
 public class FenetreInfo extends JFrame{
@@ -62,6 +46,8 @@ public class FenetreInfo extends JFrame{
 		this.listeClasseEleve.setPreferredSize(new Dimension(180,180));
 		this.tableClasse = new JTable(modeleTable);
 		tableClasse.setDefaultRenderer(Boolean.class, new SexeCellRenderer());
+		ListSelectionModel listSelectionModel = tableClasse.getSelectionModel();        
+		listSelectionModel.addListSelectionListener(new JTableControler(tableClasse, this));
 		JPanel panelDroit = new JPanel();
 		panelDroit.setLayout(new GridLayout(2,1));
 		panelDroit.add(this.panelInfo);

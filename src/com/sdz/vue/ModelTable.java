@@ -69,6 +69,10 @@ public class ModelTable extends AbstractTableModel {
 		donnees.add(eleve);
 		fireTableRowsInserted(donnees.size() -1, donnees.size() -1);
 	}
+	
+	public Eleve getEleveRow(int rowIndex){
+		return donnees.get(rowIndex);
+	}
 
 	public void removeEleve(int rowIndex) {
 		donnees.remove(rowIndex);
