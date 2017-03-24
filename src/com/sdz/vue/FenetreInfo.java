@@ -62,7 +62,7 @@ public class FenetreInfo extends JFrame{
 	}
 	
 	/**
-	 * 
+	 * Permet de mettre à jour notre JTree
 	 */
     public void updateTree() {
     	((DefaultTreeModel) listeClasseEleve.getModel()).reload();
