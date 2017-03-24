@@ -17,9 +17,9 @@ public class Main {
 		Professeur p1 = new Professeur("Girard","Patrick");
 		Professeur p2 = new Professeur("Geniet","Annie");
 		
-		Classe c1 = new Classe("Classe 1A");
-		Classe c2 = new Classe("Classe 1B");
-		Classe c3 = new Classe("Classe 1C");
+		Classe c1 = new Classe("Classe 1A","CE1");
+		Classe c2 = new Classe("Classe 1B","CM1");
+		Classe c3 = new Classe("Classe 1C","CM2");
 	
 		ImageIcon icon =new ImageIcon("Image_Bebe.png");
 

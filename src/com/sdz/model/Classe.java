@@ -11,13 +11,15 @@ public class Classe {
 	
 	private ArrayList<Eleve> listeEleves;
 	private String nomClasse;
+	private String niveau;
 	
 	/**
 	 * Constructeur de notre classe
 	 * @param nomClasse Le nom de la classe
 	 */
-	public Classe(String nomClasse){
+	public Classe(String nomClasse, String niveau){
 		this.nomClasse = nomClasse;
+		this.niveau = niveau;
 		this.listeEleves = new ArrayList<Eleve>();
 	}
 	
@@ -28,6 +30,14 @@ public class Classe {
 	 */
 	public boolean contientEnfant(Eleve e){
 		return this.listeEleves.contains(e);
+	}
+	
+	/**
+	 * Fonction permettant de récupérer le niveau de la classe
+	 * @return Le niveau de la classe
+	 */
+	public String getNiveau(){
+		return this.niveau;
 	}
 	
 	/**

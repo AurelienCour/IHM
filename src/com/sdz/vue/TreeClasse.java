@@ -35,7 +35,7 @@ public class TreeClasse {
 		buildTree();
 	}
 
-	private void buildTree() {
+	public void buildTree() {
 		DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Classes");
 		for (Professeur pr : model.getProf()){
 			for (Classe cl : pr.getClasses()) {
