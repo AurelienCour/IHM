@@ -52,4 +52,19 @@ public class FenetreInfoModel  {
 		return null;
 	}
 	
+	/**
+	 * Permet de récupérer le professeur d'une classe donné
+	 * @param c La classe donné
+	 * @return le professeur de cette classe
+	 */
+	public Professeur getProfClasse (Classe c){
+		for (Professeur professeur : professeurs) {
+			for (Classe classe : professeur.getClasses()) {
+				if(classe.equals(c))
+					return professeur;
+			}
+		}
+		return null;
+	}
+	
 }

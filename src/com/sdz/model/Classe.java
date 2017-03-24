@@ -63,4 +63,8 @@ public class Classe {
 	public String toString(){
 		return this.nomClasse;
 	}
+
+	public int getNombreEleve() {
+		return listeEleves.size();
+	}
 }

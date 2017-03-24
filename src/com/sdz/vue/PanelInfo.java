@@ -19,7 +19,7 @@ public class PanelInfo extends JPanel{
 		this.setLayout(new CardLayout());
 		this.fenetreInfo = fenetreInfo;
 		this.model = model;
-		panelInfoClasse = new PanelInfoClasse(this);
+		panelInfoClasse = new PanelInfoClasse(this,model);
 		panelInfoEleve = new PanelInfoEleve(this);
 		
 		this.add("Classe", panelInfoClasse);
