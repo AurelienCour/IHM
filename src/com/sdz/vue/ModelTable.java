@@ -15,13 +15,16 @@ public class ModelTable extends AbstractTableModel {
 
 	private ArrayList<Eleve> donnees;
 	private final String[] entetes = {"Icone", "Nom", "Prenom", "Sexe", "Age"};
+	private FenetreInfo fenetreInfo;
 
 	/**
 	 * Le constructeur de notre classe
 	 * @param model Le model contenant nos données
+	 * @param fenetreInfo 
 	 */
-	public ModelTable(FenetreInfoModel model) {
+	public ModelTable(FenetreInfoModel model, FenetreInfo fenetreInfo) {
 		super();
+		this.fenetreInfo = fenetreInfo;
 		donnees = new ArrayList<Eleve>();
 	}
 
@@ -72,6 +75,38 @@ public class ModelTable extends AbstractTableModel {
 		default:
 			return null; //Ne devrait jamais arriver
 		}
+	}
+	
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		if(columnIndex == 1 || columnIndex == 2 || columnIndex == 4)
+			return true; //Toutes les cellules éditables
+		return false;
+	}
+	
+	@Override
+	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+	    if(aValue != null){
+	        Eleve eleve = donnees.get(rowIndex);
+	 
+	        switch(columnIndex){
+	            case 1:
+	            	eleve.changeInfo((String)aValue, eleve.getPrenom(), eleve.getAge());
+	            	fenetreInfo.getPanelInfo().changeLabelEnfant(eleve);
+	            	fenetreInfo.updateTree();
+	                break;
+	            case 2:
+	            	eleve.changeInfo(eleve.getNom(), (String)aValue, eleve.getAge());
+	            	fenetreInfo.getPanelInfo().changeLabelEnfant(eleve);
+	            	fenetreInfo.updateTree();
+	                break;
+	            case 4:
+	            	eleve.changeInfo(eleve.getNom(), eleve.getPrenom(), Integer.parseInt((String)aValue));
+	            	fenetreInfo.getPanelInfo().changeLabelEnfant(eleve);
+	            	fenetreInfo.updateTree();
+	                break;
+	        }
+	    }
 	}
 	
 	@Override

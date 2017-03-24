@@ -5,13 +5,14 @@ import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import com.sdz.model.Classe;
 import com.sdz.model.FenetreInfoModel;
 
 public class PanelInfoClasse extends JPanel{
 	
-	private Font police = new Font("Serif", Font.PLAIN, 30);
+	private Font police = new Font("Serif", Font.PLAIN, 20);
 	
 	private JPanel panelNiveau;
 	private JPanel panelProf;
@@ -56,7 +57,7 @@ public class PanelInfoClasse extends JPanel{
 		
 		/*labelInfoClasse = new JLabel();
 		labelInfoClasse.setFont(police);
-		labelInfoClasse.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		labelInfoClasse.setVerticalAlignment(SwingConstants.CENTER);
 		
 		this.add(labelInfoClasse);*/

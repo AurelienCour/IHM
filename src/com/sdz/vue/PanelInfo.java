@@ -39,6 +39,7 @@ public class PanelInfo extends JPanel{
 	public void changementEffectuer(Object obj){
 		if(obj instanceof Eleve){
 			fenetreInfo.getModeleTable().reload();
+			fenetreInfo.updateTree();
 		}
 	}
 }

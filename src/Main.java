@@ -32,6 +32,7 @@ public class Main {
 		Eleve e7 = new Eleve("Hevin","Claire",10,false,icon);
 		Eleve e8 = new Eleve("Bournazel","Ines",15,false,icon);
 		Eleve e9 = new Eleve("Kislaire","Julien",23,true,icon);
+		Eleve e10 = new Eleve("Lavergne","David",10,true,icon);
 		
 		c1.addEleve(e1);
 		c1.addEleve(e2);
@@ -44,6 +45,7 @@ public class Main {
 		c3.addEleve(e7);
 		c3.addEleve(e8);
 		c3.addEleve(e9);
+		c3.addEleve(e10);
 		
 		p1.addClasse(c1);
 		p1.addClasse(c2);

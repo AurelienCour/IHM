@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.ListSelectionModel;
+import javax.swing.tree.DefaultTreeModel;
+
 import com.sdz.controler.JTableControler;
 import com.sdz.model.FenetreInfoModel;
 import com.sdz.vue.Renderer.SexeCellRenderer;
@@ -47,7 +49,7 @@ public class FenetreInfo extends JFrame{
 	 * Permet d'initialiser les composants de notre fenêtre
 	 */
 	public void initComposant(){
-		modeleTable = new ModelTable(model);
+		modeleTable = new ModelTable(model,this);
 		this.panelInfo = new PanelInfo(this,model);
 		initJTree();
 		initJTable();
@@ -58,6 +60,13 @@ public class FenetreInfo extends JFrame{
 		this.add(listeClasseEleve,BorderLayout.WEST);
 		this.add(panelDroit, BorderLayout.CENTER);
 	}
+	
+	/**
+	 * 
+	 */
+    public void updateTree() {
+    	((DefaultTreeModel) listeClasseEleve.getModel()).reload();
+    }
 	
 	/**
 	 * Permet de récupérer le panel contenant les informations
