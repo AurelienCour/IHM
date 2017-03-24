@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.sdz.model.Eleve;
+
 public class PanelInfoEleve extends JPanel{
 
 	private JLabel labelInfoEnfant;
@@ -20,7 +22,7 @@ public class PanelInfoEleve extends JPanel{
 		this.add(labelInfoEnfant);
 	}
 
-	public void changeInfo(String str) {
-		labelInfoEnfant.setText(str);
+	public void changeInfo(Eleve e) {
+		labelInfoEnfant.setText(e.toString());
 	}
 }

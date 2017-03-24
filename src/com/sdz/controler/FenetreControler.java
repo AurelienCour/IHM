@@ -18,7 +18,7 @@ public class FenetreControler {
 		this.panelInfo = panelInfo;
 	}
 
-	public void getInfo(Object obj){
+	/*public void getInfo(Object obj){
 		if(obj instanceof Eleve){
 			panelInfo.changeLabelEnfant(obj.toString());
 			fenetre.afficheTableEnfant(model.getClasseEnfant((Eleve) obj));
@@ -27,6 +27,5 @@ public class FenetreControler {
 			panelInfo.changeLabelClasse(obj.toString());
 			fenetre.afficheTableEnfant((Classe) obj);
 		}
-			
-	}
+	}*/
 }

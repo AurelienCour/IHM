@@ -1,11 +1,11 @@
 package com.sdz.vue;
 
 import java.awt.CardLayout;
-import java.awt.Font;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+
+import com.sdz.model.Classe;
+import com.sdz.model.Eleve;
 
 public class PanelInfo extends JPanel{
 	
@@ -22,13 +22,13 @@ public class PanelInfo extends JPanel{
 		this.add("Classe", panelInfoClasse);
 	}
 	
-	public void changeLabelEnfant (String str){
-		panelInfoEleve.changeInfo(str);
+	public void changeLabelEnfant (Eleve e){
+		panelInfoEleve.changeInfo(e);
 		((CardLayout) this.getLayout()).show(this,"Eleve");
 	}
 	
-	public void changeLabelClasse(String str) {
-		panelInfoClasse.changeInfo(str);
+	public void changeLabelClasse(Classe c) {
+		panelInfoClasse.changeInfo(c);
 		((CardLayout) this.getLayout()).show(this,"Classe");
 	}
 }

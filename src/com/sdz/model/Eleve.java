@@ -6,10 +6,10 @@ public class Eleve {
 
 	private String nom, prenom;
 	private int age;
-	private char sexe;
+	private boolean sexe;
 	private ImageIcon icon;
 	
-	public Eleve(String nom, String prenom, int age, char sexe, ImageIcon icon){
+	public Eleve(String nom, String prenom, int age, boolean sexe, ImageIcon icon){
 		this.nom=nom;
 		this.prenom=prenom;
 		this.age = age;
@@ -33,7 +33,7 @@ public class Eleve {
 		return this.age;
 	}
 	
-	public char getSexe(){
+	public boolean getSexe(){
 		return this.sexe;
 	}
 	

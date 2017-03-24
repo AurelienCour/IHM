@@ -19,15 +19,15 @@ public class Main {
 	
 		ImageIcon icon =new ImageIcon("Image_Bebe.png");
 
-		Eleve e1 = new Eleve("Courtillat","Aurelien",21,'M',icon);
-		Eleve e2 = new Eleve("Noyon","Laurent",20,'M',icon);
-		Eleve e3 = new Eleve("Lhommelet","Severin",18,'M',icon);
-		Eleve e4 = new Eleve("Martin","Audrey",25,'F',icon);
-		Eleve e5 = new Eleve("Mazureau","Erwan",7,'M',icon);
-		Eleve e6 = new Eleve("Roig","David",6,'M',icon);
-		Eleve e7 = new Eleve("Hevin","Claire",10,'F',icon);
-		Eleve e8 = new Eleve("Bournazel","Ines",15,'F',icon);
-		Eleve e9 = new Eleve("Kislaire","Julien",23,'M',icon);
+		Eleve e1 = new Eleve("Courtillat","Aurelien",21,true,icon);
+		Eleve e2 = new Eleve("Noyon","Laurent",20,true,icon);
+		Eleve e3 = new Eleve("Lhommelet","Severin",18,true,icon);
+		Eleve e4 = new Eleve("Martin","Audrey",25,false,icon);
+		Eleve e5 = new Eleve("Mazureau","Erwan",7,true,icon);
+		Eleve e6 = new Eleve("Roig","David",6,true,icon);
+		Eleve e7 = new Eleve("Hevin","Claire",10,false,icon);
+		Eleve e8 = new Eleve("Bournazel","Ines",15,false,icon);
+		Eleve e9 = new Eleve("Kislaire","Julien",23,true,icon);
 		
 		c1.addEleve(e1);
 		c1.addEleve(e2);
@@ -46,7 +46,6 @@ public class Main {
 		p2.addClasse(c3);
 		
 		FenetreInfoModel model = new FenetreInfoModel();
-		
 		model.addProf(p1);
 		model.addProf(p2);
 		

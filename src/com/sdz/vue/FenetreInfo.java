@@ -31,17 +31,16 @@ import com.sdz.model.Classe;
 import com.sdz.model.Eleve;
 import com.sdz.model.FenetreInfoModel;
 import com.sdz.model.Professeur;
+import com.sdz.vue.Renderer.SexeCellRenderer;
 
 public class FenetreInfo extends JFrame{
 	
-	private JPanel panelTable;
 	private PanelInfo panelInfo;
-
 	private FenetreControler controler;
 	private FenetreInfoModel model;
 	private JTree listeClasseEleve;
-	
 	private JTable tableClasse;
+	private ModelTable modeleTable;
 	
 	public FenetreInfo(FenetreInfoModel model){
 		this.setTitle("Test JTree et JTable");
@@ -51,108 +50,31 @@ public class FenetreInfo extends JFrame{
 		this.setSize(1080, 700);
 		this.model = model;
 		initComposant();
-		try {
-			//On utilise le look and feel : NimbusLookAndFeel
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-			// On applique le look and feel a notre fenetre
-			SwingUtilities.updateComponentTreeUI(this);
-		}
-		catch (InstantiationException e) {}
-		catch (ClassNotFoundException e) {}
-		catch (UnsupportedLookAndFeelException e) {}
-		catch (IllegalAccessException e) {}
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 	}
 	
 	private void initComposant(){
+		modeleTable = new ModelTable(model);
 		this.panelInfo = new PanelInfo();
 		this.controler = new FenetreControler(this.model,this,this.panelInfo);
-		
-	    //Les titres des colonnes
-	    this.tableClasse = new JTable()
-	    {
-            public Class getColumnClass(int column)
-            {
-                return getValueAt(0, column).getClass();
-            }
-        };
-        
-        ListSelectionModel listSelectionModel = tableClasse.getSelectionModel();        
-        listSelectionModel.addListSelectionListener(new ControleurTableResultat());
-		
-		TreeListener treeListener = new TreeListener();
-		DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Classes");
-		for (Professeur pr : model.getProf()){
-			for (Classe cl : pr.getClasses()) {
-				DefaultMutableTreeNode classe = new DefaultMutableTreeNode(cl);
-				for (Eleve el : cl.getListeEleve()) {
-					DefaultMutableTreeNode eleve = new DefaultMutableTreeNode(el);
-					classe.add(eleve);
-				}
-				racine.add(classe);
-			}
-		}
-		
-		this.listeClasseEleve = new JTree(racine);
-		listeClasseEleve.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-		listeClasseEleve.addTreeSelectionListener(treeListener);
-		listeClasseEleve.setPreferredSize(new Dimension(200,200));
-		
+		this.listeClasseEleve = new TreeClasse(model,this).getJTree();
+		this.listeClasseEleve.setPreferredSize(new Dimension(180,180));
+		this.tableClasse = new JTable(modeleTable);
+		tableClasse.setDefaultRenderer(Boolean.class, new SexeCellRenderer());
 		JPanel panelDroit = new JPanel();
 		panelDroit.setLayout(new GridLayout(2,1));
 		panelDroit.add(this.panelInfo);
 		panelDroit.add(new JScrollPane(tableClasse));
-		
 		this.add(listeClasseEleve,BorderLayout.WEST);
 		this.add(panelDroit, BorderLayout.CENTER);
 	}
 	
-	public void afficheTableEnfant(Classe obj){
-		String  title[] = {"Icone","Nom", "Prenom", "Sexe", "Age",""};
-		DefaultTableModel model2 = new DefaultTableModel(title,0);
-		String sexe;
-		for (Eleve el : obj.getListeEleve()) {
-			if(el.getSexe() == 'M')
-				sexe = "Garcon";
-			else
-				sexe = "Fille";
-			model2.addRow(new Object[] {"",
-										el.getNom(),
-										el.getPrenom(),
-										sexe,
-										el.getAge(),
-										el});
-		}
-		this.tableClasse.setModel(model2);
-		TableColumn column = this.tableClasse.getColumnModel().getColumn(5);
-		column.setMinWidth(0);
-		column.setMaxWidth(0);
-	}
-	
-	class TreeListener implements TreeSelectionListener{
-		public void valueChanged(TreeSelectionEvent arg0) {
-			DefaultMutableTreeNode node = (DefaultMutableTreeNode)
-					listeClasseEleve.getLastSelectedPathComponent();
-			if (node == null) return;
-			Object nodeInfo = node.getUserObject();
-			controler.getInfo(nodeInfo);
-			
-		}
-	}
-	
-	public class ControleurTableResultat  implements ListSelectionListener{
-	    public void valueChanged(ListSelectionEvent listSelectionEvent){
-	        if (listSelectionEvent.getValueIsAdjusting())
-	            return;
-	        ListSelectionModel lsm = (ListSelectionModel)listSelectionEvent.getSource();
-	        if (!lsm.isSelectionEmpty()) {
-	            int selectedRow = lsm.getMinSelectionIndex();
-	            Object obj = tableClasse.getValueAt(selectedRow, 5);
-	            controler.getInfo(obj);
-	        }
-	    }
+	public PanelInfo getPanelInfo(){
+		return this.panelInfo;
 	}
 
-	
+	public ModelTable getModeleTable(){
+		return this.modeleTable;
+	}
 }
